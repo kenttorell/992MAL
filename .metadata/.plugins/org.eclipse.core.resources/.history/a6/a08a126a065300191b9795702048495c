@@ -1,0 +1,42 @@
+package lispInterpreter.Tokens;
+
+import lispInterpreter.lexicalEnvironment.LexEnv;
+
+public class Atom implements Expression {
+	Object val;
+
+	public Atom(String val) {
+		try {
+			this.val = Integer.parseInt(val);
+		} catch (NumberFormatException e1) {
+			try {
+				this.val = Float.parseFloat(val);
+			} catch (NumberFormatException e2) {
+				this.val = val;
+			}
+		}
+	}
+
+	@Override
+	public Expression eval() throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		Expression rtrn = this;
+		if (val instanceof String) {
+			rtrn = LexEnv.getSymbol((String) val); //rtrn becomes null if getSymbol fails to find symbol
+			if (rtrn == null) {
+				rtrn = LexEnv.getValue((String) val);
+			}
+			if (rtrn == null) {
+				
+			}
+			
+		}
+		
+
+		return rtrn;
+	}
+
+	public Object getVal() {
+		return val;
+	}
+}

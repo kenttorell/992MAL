@@ -1,0 +1,111 @@
+package lispInterpreter.Tokens;
+
+import java.util.ArrayList;
+
+public class List implements Expression{
+	ArrayList<Expression> list;
+	
+	public List() {
+		this.list = new ArrayList<Expression>();
+	}
+	
+	public void add(Expression e) {
+		this.list.add(e);
+	}
+	
+	@Override
+	public Expression eval() {
+		// TODO Auto-generated method stub
+		if(list.get(0) instanceof Atom) {
+			Atom a = ((Atom)(list.get(0)));
+			if(a.val instanceof String) {
+				String errorMessage = "";
+				
+				
+				switch((String)a.val) {
+				case "+":
+					if(list.size() != 3) {
+						errorMessage = "Incorrect number of arguments for add";
+						break;
+					}
+					Number n1 = (Number)((Atom)(list.get(1).eval())).val;
+					Number n2 = (Number)((Atom)(list.get(2).eval())).val;
+					
+					if(n1 instanceof Integer && n2 instanceof Integer) {
+						return new Atom(Integer.toString((Integer)n1+(Integer)n2));
+					}else if(n1 instanceof Integer) {
+						return new Atom(Float.toString((Integer)n1 + (Float)n2));
+					}else if(n2 instanceof Integer) {
+						return new Atom(Float.toString((Float)n1 + (Integer)n2));
+					}
+					return new Atom(Float.toString((Float)n1 + (Float)n2));
+				
+				case "-":
+					if(list.size() != 3) {
+						errorMessage = "Incorrect number of arguments for subtract";
+						break;
+					}
+					n1 = (Number)((Atom)(list.get(1).eval())).val;
+					n2 = (Number)((Atom)(list.get(2).eval())).val;
+					
+					if(n1 instanceof Integer && n2 instanceof Integer) {
+						return new Atom(Integer.toString((Integer)n1-(Integer)n2));
+					}else if(n1 instanceof Integer) {
+						return new Atom(Float.toString((Integer)n1 - (Float)n2));
+					}else if(n2 instanceof Integer) {
+						return new Atom(Float.toString((Float)n1 - (Integer)n2));
+					}
+					return new Atom(Float.toString((Float)n1 - (Float)n2));
+				
+				case "*":
+					if(list.size() != 3) {
+						errorMessage = "Incorrect number of arguments for multiplication";
+						break;
+					}
+					n1 = (Number)((Atom)(list.get(1).eval())).val;
+					n2 = (Number)((Atom)(list.get(2).eval())).val;
+					
+					if(n1 instanceof Integer && n2 instanceof Integer) {
+						return new Atom(Integer.toString((Integer)n1*(Integer)n2));
+					}else if(n1 instanceof Integer) {
+						return new Atom(Float.toString((Integer)n1 * (Float)n2));
+					}else if(n2 instanceof Integer) {
+						return new Atom(Float.toString((Float)n1 * (Integer)n2));
+					}
+					return new Atom(Float.toString((Float)n1 * (Float)n2));
+					
+				case "/":
+					if(list.size() != 3) {
+						errorMessage = "Incorrect number of arguments for divide";
+						break;
+					}
+					n1 = (Number)((Atom)(list.get(1).eval())).val;
+					n2 = (Number)((Atom)(list.get(2).eval())).val;
+					
+					if(n1 instanceof Integer && n2 instanceof Integer) {
+						return new Atom(Integer.toString((Integer)n1/(Integer)n2));
+					}else if(n1 instanceof Integer) {
+						return new Atom(Float.toString((Integer)n1 / (Float)n2));
+					}else if(n2 instanceof Integer) {
+						return new Atom(Float.toString((Float)n1 / (Integer)n2));
+					}
+					return new Atom(Float.toString((Float)n1 / (Float)n2));
+					
+				case "define":
+					String valueName = (String)((Atom)(list.get(1).eval())).val;
+					Atom value = ((Atom))(list.get(2).eval()).val);
+					
+				default:
+					errorMessage = "Unrecognized function call";
+				}
+				throw new IllegalArgumentException(errorMessage);
+			
+				
+			}	
+		}else { //instanceof List
+			
+		}
+		return null;
+	}
+
+}

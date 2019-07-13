@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.IndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.lang.Number"/>
+<fullyQualifiedTypeName name="lispInterpreter.Tokens.Atom"/>
+<fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+<fullyQualifiedTypeName name="java.text.NumberFormat"/>
+<fullyQualifiedTypeName name="lispInterpreter.Tokens.Expression"/>
+<fullyQualifiedTypeName name="lispInterpreter.lexicalEnvironment.LexEnv"/>
+<fullyQualifiedTypeName name="lispInterpreter.LispInterpreter"/>
+<fullyQualifiedTypeName name="lispInterpreter.Tokens.Function"/>
+<fullyQualifiedTypeName name="lispInterpreter.Tokens.List"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+</qualifiedTypeNameHistroy>
